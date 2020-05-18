@@ -4,15 +4,17 @@ session_start();
 $_SESSION['Status'] = 0;
 
 //include andere bestanden.
-include_once('config/DBconfig.php');
+include('config/DBconfig.php');
 include_once('header.php');
-include_once('sidenav.php');
 
 //kijkt naar welke pagina hij moet gaan.
 if (isset($_GET['page'])) {
     $page = $_GET['page'];
 } else {
     $page = 'home';
+    if (isset($_GET['page']) !== 'login') {
+        include('sidenav.php');
+    }
 }
 
 ?>
@@ -24,6 +26,7 @@ if (isset($_GET['page'])) {
             }
         ?>
     </div>
+    <div class="push"></div>
 
 <?php
 

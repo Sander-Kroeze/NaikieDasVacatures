@@ -13,9 +13,9 @@
     <nav class="navigation">
         <ul>
             <li>
-                <a style="cursor:pointer;" class="nav_a  <?php if ($_GET['page'] === 'pagina2') {
+                <a style="cursor:pointer;" class="nav_a  <?php if ($_GET['page'] === 'login') {
                     echo 'active';
-                } ?> " id="a" onclick="location.href='index.php?page=pagina2'">Log in</a>
+                } ?> " id="a" onclick="location.href='index.php?page=loginPHP'">Log in</a>
             </li>
             <li>
                 <a style="cursor:pointer;" class="nav_a  <?php if ($_GET['page'] === 'home') {

@@ -17,7 +17,9 @@ body {
 
 .content-all-pages {
     width: 80%;
-    margin: 0 auto;
+    margin-left: 160px; /* Same as the width of the sidenav */
+    font-size: 28px; /* Increased text to enable scrolling */
+    padding: 0px 10px;
 }
 
 /*Navigation*/
@@ -73,6 +75,63 @@ nav ul li a:hover {
     display: block;
 }
 
+/*Loginform*/
+#loginform, #registerform{
+    margin-top:150px;
+    margin-left:auto;
+    margin-right:auto;
+    width:350px;
+    border: 1px solid black;
+    border-radius: 25px;
+    text-align: center;
+
+}
+
+.input{
+    width:270px;
+    padding:15px 25px;
+    font-family:"Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "DejaVu Sans", Verdana, sans-serif;
+    background: #f5f5f5;
+    border:none;
+    border-radius: 5px;
+    color: #333;
+    font-size: 14px;
+    margin-top:15px;
+}
+
+.loginbutton{
+    color: white;
+    background-color:#2054A8;
+    border-radius:5px/5px;
+    -webkit-border-radius:5px/5px;
+    -moz-border-radius:5px/5px;
+    color:#333;
+    display:inline-block;
+    font-family:"Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "DejaVu Sans", Verdana, sans-serif;
+    font-size:18px;
+    font-weight:bold;
+    width:270px;
+    text-align:center;
+    line-height:50px;
+    text-decoration:none;
+    height:50px;
+    margin-top:20px;
+    margin-bottom:20px;
+    border:none;
+    outline:0;
+    cursor: pointer;
+}
+
+.loginbutton:active {
+    position:relative;
+    top:1px;
+    color: white;
+}
+
+.loginbutton:hover{
+    background-color:#3973DF;
+}
+
 /*Footer*/
 footer {
     width: 100%;
@@ -81,6 +140,10 @@ footer {
     padding: 10px 0;
     color: #fff;
     bottom: 0px;
+}
+
+.push {
+    height: 100px;
 }
 
 
