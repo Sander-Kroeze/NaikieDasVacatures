@@ -1,3 +1,7 @@
+<?php
+
+?>
+
 <!--formulier voor het inloggen-->
 <form id="loginform" name="inloggen" method="POST" action="" enctype="multipart/form-data">
     <p>Inloggen</p>

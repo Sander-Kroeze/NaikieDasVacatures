@@ -29,11 +29,12 @@ class login
                     $_SESSION['EMAIL'] = $result['email'];
                     $_SESSION['PASSWORD'] = $result['password'];
                     $_SESSION['user_ID'] = $result['userID'];
-
+//                  stuurt je door naar de homepage
                     echo "<script>location.href='index.php?page=home';</script>";
                 } else {
                     echo "<script type='text/javascript'>alert('Je wachtwoord is fout');</script>";
                 }
+//          als er geen reslutaat is zoekt hij door de manager table
             } elseif (!$result) {
                 try {
                     $sql = "SELECT * FROM manager WHERE manEmail = ?";
@@ -43,14 +44,15 @@ class login
                     $hash = $result['manPassword'];
 
                     if (password_verify($password, $hash)) {
+//                      maakt session waardes aan die gebruikt kunnen worden.
                         $mijnSession = session_id();
                         $_SESSION['ID'] = $mijnSession;
                         $_SESSION['EMAIL'] = $result['manEmail'];
                         $_SESSION['PASSWORD'] = $result['manPassword'];
                         $_SESSION['STATUS'] = $result['isManager'];
                         $_SESSION['user_ID'] = $result['managerID'];
-
-                        echo "<script>location.href='index.php?page=home';</script>";
+//                       stuurt je door naar de homepage
+                        echo "<script>location.href='index.php';</script>";
                     } else {
                         echo "<script type='text/javascript'>alert('Je wachtwoord is fout');</script>";
                     }
@@ -65,3 +67,4 @@ class login
         }
     }
 }
+
