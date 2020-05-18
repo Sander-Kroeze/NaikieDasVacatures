@@ -119,7 +119,7 @@ CREATE TABLE IF NOT EXISTS `NaikieDasVacatures`.`manager` (
 ENGINE = InnoDB;
 
 INSERT INTO manager (manEmail, manPassword, isManager)
-VALUES ('admin@admin', '$2y$10$LgF4LrYl2tKlewjha1LaSuo0YDpJYlauiHqYhYj.zfsP76q6EuzTC', 1);
+VALUES ('admin@admin.nl', '$2y$10$LgF4LrYl2tKlewjha1LaSuo0YDpJYlauiHqYhYj.zfsP76q6EuzTC', 1);
 
 
 SET SQL_MODE=@OLD_SQL_MODE;

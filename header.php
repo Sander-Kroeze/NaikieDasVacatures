@@ -12,11 +12,26 @@
 <div class="main">
     <nav class="navigation">
         <ul>
-            <li>
-                <a style="cursor:pointer;" class="nav_a  <?php if ($_GET['page'] === 'login') {
-                    echo 'active';
-                } ?> " id="a" onclick="location.href='index.php?page=loginPHP'">Log in</a>
-            </li>
+            <?php
+            if (isset($_SESSION["ID"])) {
+
+                ?>
+                <li>
+                    <a style="cursor:pointer;" class="nav_a  <?php if ($_GET['page'] === 'logout') {
+                        echo 'active';
+                    } ?> " id="a" onclick="location.href='index.php?page=logout'">Uitloggen</a>
+                </li>
+                <?php
+            } else {
+                ?>
+                <li>
+                    <a style="cursor:pointer;" class="nav_a  <?php if ($_GET['page'] === 'login') {
+                        echo 'active';
+                    } ?> " id="a" onclick="location.href='index.php?page=loginPHP'">Log in</a>
+                </li>
+                <?php
+            }
+            ?>
             <li>
                 <a style="cursor:pointer;" class="nav_a  <?php if ($_GET['page'] === 'home') {
                     echo 'active';
