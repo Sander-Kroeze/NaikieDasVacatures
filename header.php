@@ -13,8 +13,9 @@
     <nav class="navigation">
         <ul>
             <li>
-                <img style="cursor: pointer" width="55px" src="" onclick="window.open('index.php?page=home')"
-                     alt="logo"/>
+                <a style="cursor:pointer;" class="nav_a  <?php if ($_GET['page'] === 'pagina2') {
+                    echo 'active';
+                } ?> " id="a" onclick="location.href='index.php?page=pagina2'">Log in</a>
             </li>
             <li>
                 <a style="cursor:pointer;" class="nav_a  <?php if ($_GET['page'] === 'home') {
@@ -22,12 +23,7 @@
                 }
                 if (empty($_GET['page'])) {
                     echo 'active';
-                } ?> " id="a" onclick="location.href='index.php'">Home</a>
-            </li>
-            <li>
-                <a style="cursor:pointer;" class="nav_a  <?php if ($_GET['page'] === 'pagina2') {
-                    echo 'active';
-                } ?> " id="a" onclick="location.href='index.php?page=pagina2'">pagina 2</a>
+                } ?> " id="a" onclick="location.href='index.php'">Hoofdpagina</a>
             </li>
         </ul>
     </nav>
