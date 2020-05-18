@@ -15,7 +15,8 @@ class login
 //      kijkt of de gegevens overeen komen met een manager of een user
         try {
             $sql = "SELECT * FROM users WHERE email = ?";
-            $stmt = $db->prepare($sql); $stmt->execute(array($email));
+            $stmt = $db->prepare($sql);
+            $stmt->execute(array($email));
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
 //          Als er resultaat is dan
@@ -32,13 +33,14 @@ class login
 //                  stuurt je door naar de homepage
                     echo "<script>location.href='index.php?page=home';</script>";
                 } else {
-                    echo "<script type='text/javascript'>alert('Je wachtwoord is fout');</script>";
+                    echo "<script type='text/javascript'>alert('U heeft verkeerde gegevens ingevuld');</script>";
                 }
 //          als er geen reslutaat is zoekt hij door de manager table
             } elseif (!$result) {
                 try {
                     $sql = "SELECT * FROM manager WHERE manEmail = ?";
-                    $stmt = $db->prepare($sql); $stmt->execute(array($email));
+                    $stmt = $db->prepare($sql);
+                    $stmt->execute(array($email));
                     $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
                     $hash = $result['manPassword'];
@@ -54,13 +56,13 @@ class login
 //                       stuurt je door naar de homepage
                         echo "<script>location.href='index.php';</script>";
                     } else {
-                        echo "<script type='text/javascript'>alert('Je wachtwoord is fout');</script>";
+                        echo "<script type='text/javascript'>alert('U heeft verkeerde gegevens ingevuld');</script>";
                     }
                 } catch (PDOException $e) {
                     echo $e->getMessage();
                 }
             } else {
-                echo "<script type='text/javascript'>alert('Je email is fout.');</script>";
+                echo "<script type='text/javascript'>alert('U heeft verkeerde gegevens ingevuld');</script>";
             }
         } catch (PDOException $e) {
             echo $e->getMessage();

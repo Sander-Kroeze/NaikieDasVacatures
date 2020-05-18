@@ -6,7 +6,7 @@
     <?php
         if (isset($_SESSION['STATUS'])) {
          ?>
-            <button onclick="window.location.href='index.php?page=addJobOfferForm'">Nieuwe vacature toevoegen</button>
+            <button onclick="window.location.href='index.php?page=addJobOfferPHP'">Nieuwe vacature toevoegen</button>
         <?php
         }
     ?>
