@@ -84,7 +84,7 @@ if (isset($_SESSION["user_ID"])) {
     <?php
 } elseif (isset($_SESSION["STATUS"]) && $_SESSION['STATUS'] === '1') {
 //  manager view
-    $queryReactions = "SELECT * FROM naikiedasvacatures.offerreaction
+    $queryReactions = "SELECT * FROM offerreaction
 Where idJoboffer = ?";
 
     $stmt2 = $db->prepare($queryReactions);
@@ -113,10 +113,10 @@ Where idJoboffer = ?";
                     </td>
                     <td><p><?php echo $jobReaction['motivation'] ?></p></td>
                     <td>
-                        <button class="jobReactionButton">Accepteren</button>
+                        <button class="jobReactionButton" onclick="window.location.href='index.php?page=acceptPHP&reaction=<?php echo $jobReaction['offerReactionID']; ?>'">Accepteren</button>
                         <form id="afwijzen" name="afwijzen" method="POST" action="" enctype="multipart/form-data">
                             <input class="jobReactionButton" type="submit" value="Afwijzen" id="submit"/>
-                            <input type="hidden" name="sumbitAfwijzen" value="true">
+                            <input type="hidden" name="submitAfwijzen" value="true">
                         </form>
 
                     </td>

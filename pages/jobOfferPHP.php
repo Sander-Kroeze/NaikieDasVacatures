@@ -75,7 +75,7 @@ if (isset($_POST['changeStatus'])) {
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\PHPMailer;
 
-if (isset($_POST['sumbitAfwijzen'])) {
+if (isset($_POST['submitAfwijzen'])) {
 
 
     require_once 'vendor/autoload.php';
@@ -109,11 +109,6 @@ if (isset($_POST['sumbitAfwijzen'])) {
         echo "<script type='text/javascript'>alert('Het bericht kon niet verzonder worden.');</script>";
 
     }
-}
-
-
-if (isset($_POST['submitAccepteren'])) {
-
 }
 
 
