@@ -1,7 +1,7 @@
 <?php
 include('sidenav.php');
 // haalt gegevens uit de url/database
-$query = "SELECT j.name, j.description, j.status, jb.branchName, jf.functionName
+$query = "SELECT j.jobofferID, j.name, j.description, j.status, jb.branchName, jf.functionName
 FROM joboffer j
 INNER JOIN jobbranch jb
     on j.idJobbranch = jb.jobBranchID
@@ -14,7 +14,35 @@ $stmt = $db->prepare($query);
 $stmt->execute(array($_GET['jobofferID']));
 $jobOffers = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-// user gedeelte
+
+if (isset($_SESSION["STATUS"]) && $_SESSION['STATUS'] === '1') {
+    ?>
+    <p>Zet het Vactuur aan of uit.</p>
+    <form action="" method="POST" enctype="multipart/form-data">
+        <select class="input" name="nieuweStatus" onchange='this.form.submit()'>
+            <option selected>selecteer een optie</option>
+            <?php
+            foreach ($jobOffers as $jobOffer) {
+                echo 'status: ' . $jobOffer['status'];
+                if ($jobOffer['status'] === '0') {
+                    ?>
+                    <option value="1">Zet deze vacature uit</option>
+                    <?php
+                } else {
+                    ?>
+                    <option value="0">Zet deze vacature aan</option>
+                    <?php
+                }
+            }
+            ?>
+        </select>
+        <noscript><input type="submit" value="submit"></noscript>
+        <input type="hidden" name="changeStatus" value="true">
+        <input type="hidden" name="jobofferID" value="<?php echo $_GET['jobofferID'] ?>">
+    </form>
+    <?php
+}
+
 
 foreach ($jobOffers as $jobOffer) {
     ?>
@@ -37,6 +65,7 @@ foreach ($jobOffers as $jobOffer) {
     </div>
     <?php
 }
+// user view
 if (isset($_SESSION["user_ID"])) {
     ?>
     <p>Reageren op deze vacature.</p><br>
@@ -53,6 +82,85 @@ if (isset($_SESSION["user_ID"])) {
         <input type="submit" class="loginbutton" value="Verstuur" style="color: white" id="submit"/>
     </form>
     <?php
+} elseif (isset($_SESSION["STATUS"]) && $_SESSION['STATUS'] === '1') {
+//  manager view
+    $queryReactions = "SELECT * FROM naikiedasvacatures.offerreaction
+Where idJoboffer = ?";
+
+    $stmt2 = $db->prepare($queryReactions);
+    $stmt2->execute(array($_GET['jobofferID']));
+    $jobReactions = $stmt2->fetchAll(PDO::FETCH_ASSOC);
+
+    ?>
+    <div class="divJobReactions">
+        <p>Reacties</p>
+        <table>
+            <tr>
+                <th>Download cv</th>
+                <th>Motivatie</th>
+                <th>Acties</th>
+            </tr>
+            <?php
+
+            foreach ($jobReactions as $jobReaction) {
+                ?>
+                <tr>
+                    <td>
+                        <?php
+                        echo '<a class="linkJoboffer" href="uploads/cv/' . $jobReaction['cv'] . '" download=""> Download cv</a><br>';
+                        ?>
+                    </td>
+                    <td><p><?php echo $jobReaction['motivation'] ?></p></td>
+                    <td>
+                        <button class="jobReactionButton">Accepteren</button>
+                        <button class="jobReactionButton">Afwijzen</button>
+                    </td>
+                </tr>
+                <?php
+            }
+            ?>
+        </table>
+    </div>
+    <?php
+} else {
+//  view als iemand niet ingelogt is.
+    echo 'login als user om een reactie te plaatsen';
 }
-?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

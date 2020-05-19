@@ -47,3 +47,45 @@ if (isset($_POST['submitReaction'])) {
     $newJobOffer = new jobOfferReaction;
     $newJobOffer->addReactionToJobOffer($userID, $jobOfferID, $motivation, $cvInfo);
 }
+
+if (isset($_POST['changeStatus'])) {
+    try {
+        $db = new PDO("mysql:host=localhost;dbname=naikiedasvacatures", DB_USER, DB_PASS);
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+    }
+
+    $nieuweStatus = htmlspecialchars($_POST['nieuweStatus']);
+    $vacatureID = htmlspecialchars($_POST['jobofferID']);
+
+//  Zet de gegevens in de database ----------------------------------------------------------->
+    $query_updateArtikel = "UPDATE joboffer SET status = '$nieuweStatus' WHERE jobofferID = '$vacatureID'";
+    $db->exec($query_updateArtikel);
+
+//  redirect je terug met een alert ----------------------------------------------------------->
+    echo "
+            <script>
+            alert('De status in aangepast $vacatureID');
+            location.href='index.php?page=jobOfferPHP&jobofferID=$vacatureID';
+              </script>
+         ";
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
