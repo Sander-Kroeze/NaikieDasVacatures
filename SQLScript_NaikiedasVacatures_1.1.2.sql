@@ -117,9 +117,41 @@ CREATE TABLE IF NOT EXISTS `NaikieDasVacatures`.`manager` (
   `isManager` TINYINT(4) NOT NULL,
   PRIMARY KEY (`managerID`))
 ENGINE = InnoDB;
-
+-- manager account
 INSERT INTO manager (manEmail, manPassword, isManager)
 VALUES ('admin@admin.nl', '$2y$10$LgF4LrYl2tKlewjha1LaSuo0YDpJYlauiHqYhYj.zfsP76q6EuzTC', 1);
+
+-- voorbeeld functions
+INSERT INTO jobFunction (functionName)
+VALUES ('Vakkenvuller');
+
+INSERT INTO jobFunction (functionName)
+VALUES ('Magazijn man/vrouw');
+
+INSERT INTO jobFunction (functionName)
+VALUES ('Bedrijfsleider');
+
+INSERT INTO jobFunction (functionName)
+VALUES ('Manager');
+
+-- voorbeeld branches
+INSERT INTO branchName (functionName)
+VALUES ('Amsterdam');
+
+INSERT INTO branchName (functionName)
+VALUES ('Emmen');
+
+INSERT INTO branchName (functionName)
+VALUES ('Zwolle');
+
+INSERT INTO branchName (functionName)
+VALUES ('Groningen');
+
+INSERT INTO branchName (functionName)
+VALUES ('Assen');
+
+INSERT INTO branchName (functionName)
+VALUES ('Hardenberg');
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
