@@ -52,7 +52,7 @@ class login
                         $_SESSION['EMAIL'] = $result['manEmail'];
                         $_SESSION['PASSWORD'] = $result['manPassword'];
                         $_SESSION['STATUS'] = $result['isManager'];
-                        $_SESSION['user_ID'] = $result['managerID'];
+                        $_SESSION['manager_ID'] = $result['managerID'];
 //                       stuurt je door naar de homepage
                         echo "<script>location.href='index.php';</script>";
                     } else {

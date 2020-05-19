@@ -37,6 +37,22 @@ foreach ($jobOffers as $jobOffer) {
     </div>
     <?php
 }
+if (isset($_SESSION["user_ID"])) {
+    ?>
+    <p>Reageren op deze vacature.</p><br>
 
+    <!--Velden voor het oploaden van Vacatures.-->
+    <form id="addReaction" name="addReaction" method="POST" action="" enctype="multipart/form-data">
+        <label>CV:</label>
+        <input type="file" name="fileToUpload" id="fileToUpload" required><br><br>
+        <label>Motivatie:</label><br>
+        <textarea required name="Motivation" form="addReaction" rows="9" cols="50"></textarea><br>
+        <input type="hidden" name="userID" value="<?php echo $_SESSION['user_ID'] ?>">
+        <input type="hidden" name="jobOfferID" value="<?php echo $_GET['jobofferID'] ?>">
+        <input type="hidden" name="submitReaction" value="true">
+        <input type="submit" class="loginbutton" value="Verstuur" style="color: white" id="submit"/>
+    </form>
+    <?php
+}
+?>
 
-// admin gedeelte

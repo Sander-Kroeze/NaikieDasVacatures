@@ -21,7 +21,7 @@ $jobOffers = $stmt->fetchAll(PDO::FETCH_ASSOC);
 //  wordt door de opgehaalde gegeven heen gelopen
 foreach ($jobOffers as $jobOffer) {
     ?>
-    <a class="linkJoboffer" href="index.php?page=jobOfferPage&jobofferID=<?php echo $jobOffer["jobofferID"]; ?>">
+    <a class="linkJoboffer" href="index.php?page=jobOfferPHP&jobofferID=<?php echo $jobOffer["jobofferID"]; ?>">
         <div class="divJobOffers">
             <!--        toont alle namen die zijn gevonden.-->
             <?php echo $jobOffer['name']; ?>
