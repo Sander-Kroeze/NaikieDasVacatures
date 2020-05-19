@@ -18,6 +18,7 @@ $jobOffers = $stmt->fetchAll(PDO::FETCH_ASSOC);
 if (isset($_SESSION["STATUS"]) && $_SESSION['STATUS'] === '1') {
     ?>
     <p>Zet het Vactuur aan of uit.</p>
+<!--    form voor het uit/aanzetten van een vacature-->
     <form action="" method="POST" enctype="multipart/form-data">
         <select class="input" name="nieuweStatus" onchange='this.form.submit()'>
             <option selected>selecteer een optie</option>
@@ -39,6 +40,12 @@ if (isset($_SESSION["STATUS"]) && $_SESSION['STATUS'] === '1') {
         <noscript><input type="submit" value="submit"></noscript>
         <input type="hidden" name="changeStatus" value="true">
         <input type="hidden" name="jobofferID" value="<?php echo $_GET['jobofferID'] ?>">
+    </form>
+    <!--Form voor het verwijderen van een vacature-->
+    <form action="" method="POST" enctype="multipart/form-data">
+        <input type="submit" class="jobReactionButton" value="Verwijder" id="submit"/>
+        <input type="hidden" name="jobOfferID" value="<?php echo $_GET['jobofferID']; ?>">
+        <input type="hidden" name="deleteJobOffer" value="true">
     </form>
     <?php
 }
@@ -107,13 +114,16 @@ Where idJoboffer = ?";
                 <tr>
                     <td>
                         <?php
-//                      bestand downloaden
+                        //                      bestand downloaden
                         echo '<a class="linkJoboffer" href="uploads/cv/' . $jobReaction['cv'] . '" download=""> Download cv</a><br>';
                         ?>
                     </td>
                     <td><p><?php echo $jobReaction['motivation'] ?></p></td>
                     <td>
-                        <button class="jobReactionButton" onclick="window.location.href='index.php?page=acceptPHP&reaction=<?php echo $jobReaction['offerReactionID']; ?>'">Accepteren</button>
+                        <button class="jobReactionButton"
+                                onclick="window.location.href='index.php?page=acceptPHP&reaction=<?php echo $jobReaction['offerReactionID']; ?>'">
+                            Accepteren
+                        </button>
                         <form id="afwijzen" name="afwijzen" method="POST" action="" enctype="multipart/form-data">
                             <input class="jobReactionButton" type="submit" value="Afwijzen" id="submit"/>
                             <input type="hidden" name="submitAfwijzen" value="true">

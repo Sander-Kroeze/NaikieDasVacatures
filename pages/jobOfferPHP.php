@@ -111,6 +111,20 @@ if (isset($_POST['submitAfwijzen'])) {
     }
 }
 
+if (isset($_POST['deleteJobOffer'])) {
+//  maakt connectie met de DB
+    $conn = new mysqli('localhost', 'root', '', 'naikiedasvacatures');
+//  controleert de input
+    $offerID = htmlspecialchars($_POST['jobOfferID']);
+
+//  verwijderd een rij uit de databse
+    $query = "DELETE FROM joboffer WHERE jobofferID = '$offerID';";
+    $conn->query($query);
+
+    echo "<script type='text/javascript'>alert('De vacature is verwijderd!');</script>";
+    echo "<script>location.href='index.php';</script>";
+}
+
 
 
 
