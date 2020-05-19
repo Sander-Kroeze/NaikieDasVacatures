@@ -43,7 +43,6 @@ if (isset($_SESSION["STATUS"])) {
             }
             ?>
         </select>
-
         <p>Bestand toevoegen</p>
         <input type="file" name="fileToUpload" id="fileToUpload">
         <p>Of type zelf een vacature</p><br>

@@ -107,13 +107,18 @@ Where idJoboffer = ?";
                 <tr>
                     <td>
                         <?php
+//                      bestand downloaden
                         echo '<a class="linkJoboffer" href="uploads/cv/' . $jobReaction['cv'] . '" download=""> Download cv</a><br>';
                         ?>
                     </td>
                     <td><p><?php echo $jobReaction['motivation'] ?></p></td>
                     <td>
                         <button class="jobReactionButton">Accepteren</button>
-                        <button class="jobReactionButton">Afwijzen</button>
+                        <form id="afwijzen" name="afwijzen" method="POST" action="" enctype="multipart/form-data">
+                            <input class="jobReactionButton" type="submit" value="Afwijzen" id="submit"/>
+                            <input type="hidden" name="sumbitAfwijzen" value="true">
+                        </form>
+
                     </td>
                 </tr>
                 <?php
