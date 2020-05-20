@@ -77,7 +77,7 @@ if (isset($_POST['changeStatus'])) {
 //  redirect je terug met een alert ----------------------------------------------------------->
     echo "
             <script>
-            alert('De status in aangepast $vacatureID');
+            alert('De status in aangepast');
             location.href='index.php?page=jobOfferPHP&jobofferID=$vacatureID';
               </script>
          ";

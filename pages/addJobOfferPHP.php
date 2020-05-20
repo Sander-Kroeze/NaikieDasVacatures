@@ -5,15 +5,41 @@ include('functions/addJobOffer.php');
 
 if (isset($_POST['submitJobOffer'])) {
 //    lees de waarden uit de POST en controleerd ze op speciale tekens.
-    $jobOfferName           = htmlspecialchars($_POST['jobOfferName']);
-    $jobOfferFunction       = htmlspecialchars($_POST['jobOfferFunction']);
-    $jobOfferBranch         = htmlspecialchars($_POST['jobOfferBranch']);
-    $textDescription        = htmlspecialchars($_POST['textDescription']);
+    $jobOfferName = htmlspecialchars($_POST['jobOfferName']);
+    $jobOfferFunction = htmlspecialchars($_POST['jobOfferFunction']);
+    $jobOfferBranch = htmlspecialchars($_POST['jobOfferBranch']);
+    $textDescription = htmlspecialchars($_POST['textDescription']);
 
+//    controleerd of ze zijn ingevult
+    if (empty($jobOfferName)) {
+        echo "<script type='text/javascript'>alert('Vul alle velden in');</script>";
+        exit;
+    }
+
+//    controleerd of ze zijn ingevult
+    if (empty($jobOfferFunction)) {
+        echo "<script type='text/javascript'>alert('Vul alle velden in');</script>";
+        exit;
+    }
+
+//    controleerd of ze zijn ingevult
+    if (empty($jobOfferBranch)) {
+        echo "<script type='text/javascript'>alert('Vul alle velden in');</script>";
+        exit;
+    }
+
+//    controleerd of ze zijn ingevult
+    if (empty($textDescription) && empty($_FILES['fileToUpload']['name'])) {
+        echo "<script type='text/javascript'>alert('Vul alle velden in');</script>";
+        exit;
+    }
+
+//    controleerd of ze zijn ingevult
     if (!empty($textDescription) && !empty($_FILES['fileToUpload']['name'])) {
         echo "<script type='text/javascript'>alert('Vul alleen De beschrijving in of voeg alleen een bestand toe, niet allebei');</script>";
         exit;
     }
+
 
     if (empty($textDescription) && !empty($_FILES['fileToUpload']['name'])) {
         //  haalt de lokatie op waar je zit in je mappen structuur
@@ -26,7 +52,7 @@ if (isset($_POST['submitJobOffer'])) {
         $fileName = $_FILES['fileToUpload']['name'];
 //      de tijd in miliseconden voor een unique file naam
         $milliseconds = round(microtime(true) * 1000);
-        $newFileName = $milliseconds . '_'. $fileName;
+        $newFileName = $milliseconds . '_' . $fileName;
 
         $descriptionInfo = $newFileName;
 
@@ -40,7 +66,7 @@ if (isset($_POST['submitJobOffer'])) {
         }
 //      informatie over het bestand
         $fileSize = $_FILES['fileToUpload']['size'];
-        $fileTmpName  = $_FILES['fileToUpload']['tmp_name'];
+        $fileTmpName = $_FILES['fileToUpload']['tmp_name'];
         $fileType = $_FILES['fileToUpload']['type'];
 //      upload het bestand.
         $uploadPath = $currentDirectory . $uploadDirectory . basename($newFileName);

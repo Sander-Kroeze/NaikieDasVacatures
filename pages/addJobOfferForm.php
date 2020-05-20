@@ -1,6 +1,6 @@
 <?php
 include('sidenav.php');
-if (isset($_SESSION["STATUS"]) && $_SESSION['STATUS'] === 1) {
+if (isset($_SESSION["STATUS"]) && $_SESSION['STATUS'] === '1') {
     ?>
     <!--Velden voor het oploaden van Vacatures.-->
     <form id="addJobOffer" name="addJobOffer" method="POST" action="" enctype="multipart/form-data">
@@ -10,7 +10,6 @@ if (isset($_SESSION["STATUS"]) && $_SESSION['STATUS'] === 1) {
 
         <p>Vacature functie</p>
         <select id="cars" name="jobOfferFunction" class="input" required>
-            <option selected>Selecteer een optie</option>
             <?php
             $query = "SELECT * FROM jobfunction";
             $stmt = $db->prepare($query);
@@ -28,7 +27,6 @@ if (isset($_SESSION["STATUS"]) && $_SESSION['STATUS'] === 1) {
 
         <p>Vacature filiaal</p>
         <select id="cars" name="jobOfferBranch" class="input" required>
-            <option selected>Selecteer een optie</option>
             <?php
             $query = "SELECT * FROM jobbranch";
             $stmt = $db->prepare($query);

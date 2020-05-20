@@ -11,6 +11,20 @@ if (isset($_POST['registersubmit'])) {
     $userEmail       = htmlspecialchars($_POST['registeremail']);
     $userPassword    = htmlspecialchars($_POST['registerpassword']);
 
+    // zoek of email bestaat in de database
+    $sql = "SELECT manEmail FROM manager WHERE manEmail = '$userEmail'";
+    $stmt = $db->prepare($sql);
+    $stmt->execute(array(
+        $userEmail
+    ));
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    //      kijkt of er resultaat is gevonden, zo niet kan de query uitgevoerd worden.
+    if ($result) {
+        echo "<script type='text/javascript'>alert('het email adres: $userEmail, bestaat al!');</script>";
+        exit;
+    }
+
     $regiserUser = new Register;
     $regiserUser->registerUser($userEmail, $userPassword);
 }
