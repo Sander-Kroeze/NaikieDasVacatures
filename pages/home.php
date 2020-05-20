@@ -10,7 +10,12 @@ include('sidenav.php');
 //}
 
 //  query die alle vacatures ophaalt uit de database
-$query = "SELECT * FROM joboffer";
+if (isset($_SESSION["STATUS"]) && $_SESSION['STATUS'] === '1') {
+    $query = "SELECT * FROM joboffer";
+} else {
+    $query = "SELECT * FROM joboffer WHERE status = '0'";
+}
+
 
 $stmt = $db->prepare($query);
 $stmt->execute(array());
