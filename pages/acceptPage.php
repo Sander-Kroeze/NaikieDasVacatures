@@ -1,12 +1,13 @@
 <?php
 include('sidenav.php');
-
+// query om gegevens van een bepaalde reactie op te halen.
 $query = "SELECT offr.cv, offr.motivation, u.email
 FROM offerreaction offr
 INNER JOIN users u
     on offr.idUser = u.userID
 WHERE offerReactionID = ?";
 
+// haalt de gegevens op uit de database
 $stmt2 = $db->prepare($query);
 $stmt2->execute(array($_GET['reaction']));
 $userInformation = $stmt2->fetchAll(PDO::FETCH_ASSOC);
@@ -17,6 +18,7 @@ foreach ($userInformation as $userInfo) {
         <p>Motievatie:</p>
         <p><?php echo $userInfo['motivation']; ?></p>
         <p>cv</p>
+<!--        hier kun je het cv mee downloaden.-->
         <?php echo '<a class="linkJoboffer" href="uploads/cv/' . $userInfo['cv'] . '" download=""> Download cv</a><br>'; ?>
     </div>
     <br>

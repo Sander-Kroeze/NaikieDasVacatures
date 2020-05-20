@@ -1,6 +1,7 @@
 <?php
 include('jobOfferPage.php');
 include('jobOfferReaction.php');
+include('mailer.php');
 
 if (isset($_POST['submitReaction'])) {
 //    lees de waarden uit de POST en controleerd ze op speciale tekens.
@@ -72,43 +73,13 @@ if (isset($_POST['changeStatus'])) {
          ";
 }
 
-use PHPMailer\PHPMailer\Exception;
-use PHPMailer\PHPMailer\PHPMailer;
-
 if (isset($_POST['submitAfwijzen'])) {
-
-
-    require_once 'vendor/autoload.php';
-
-    $mail = new PHPMailer(true);
-
-    try {
-        $mail->isSMTP();
-        $mail->Host = 'smtp.mailtrap.io';  //mailtrap SMTP server
-        $mail->SMTPAuth = true;
-        $mail->Username = 'ba5327638e3ad0';   //username
-        $mail->Password = '58c4a4d2f59ccc';   //password
-        $mail->Port = 2525;                    //smtp port
-
-        $mail->setFrom('NaikieDas@jawel.com', 'Harry');
-        $mail->addAddress('Henk@nee.nl', 'Henk');
-
-        $mail->isHTML(true);
-
-        $mail->Subject = 'Reactie vacature NaikieDas';
-        $mail->Body = '<p>Bedankt voor je reactie, je bent niet aangenomen</p>';
-
-        if (!$mail->send()) {
-            echo 'Message could not be sent.';
-            echo 'Mailer Error: ' . $mail->ErrorInfo;
-        } else {
-            echo "<script type='text/javascript'>alert('Het bericht is verzonden');</script>";
-
-        }
-    } catch (Exception $e) {
-        echo "<script type='text/javascript'>alert('Het bericht kon niet verzonder worden.');</script>";
-
-    }
+    $persMessage = '<p>Bedankt voor je bericht! Je bent niet aangenomen</p>';
+    $isSet = 'submitAfwijzen';
+    $time = 0;
+//  Roept een method aan om een mail te versturen
+    $newMail = new mailer;
+    $newMail->makeNewMail($time, $persMessage, $isSet);
 }
 
 if (isset($_POST['deleteJobOffer'])) {

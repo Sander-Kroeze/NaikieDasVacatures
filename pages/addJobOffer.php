@@ -1,6 +1,5 @@
 <?php
 
-
 class addJobOffer
 {
     public function newJobOffer($jobOfferName, $jobOfferFunction, $jobOfferBranch, $textDescription)
