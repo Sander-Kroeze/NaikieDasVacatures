@@ -1,7 +1,7 @@
 <?php
 
 include('addJobOfferForm.php');
-include('addJobOffer.php');
+include('functions/addJobOffer.php');
 
 if (isset($_POST['submitJobOffer'])) {
 //    lees de waarden uit de POST en controleerd ze op speciale tekens.

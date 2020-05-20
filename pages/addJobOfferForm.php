@@ -1,6 +1,6 @@
 <?php
 include('sidenav.php');
-if (isset($_SESSION["STATUS"])) {
+if (isset($_SESSION["STATUS"]) && $_SESSION['STATUS'] === 1) {
     ?>
     <!--Velden voor het oploaden van Vacatures.-->
     <form id="addJobOffer" name="addJobOffer" method="POST" action="" enctype="multipart/form-data">

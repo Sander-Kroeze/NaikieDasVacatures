@@ -1,7 +1,7 @@
 <?php
 include('jobOfferPage.php');
-include('jobOfferReaction.php');
-include('mailer.php');
+include('functions/jobOfferReaction.php');
+include('functions/mailer.php');
 
 if (isset($_POST['submitReaction'])) {
 //    lees de waarden uit de POST en controleerd ze op speciale tekens.
@@ -10,6 +10,16 @@ if (isset($_POST['submitReaction'])) {
     $motivation = htmlspecialchars($_POST['Motivation']);
 
     if (empty($motivation) && empty($_FILES['fileToUpload']['name'])) {
+        echo "<script type='text/javascript'>alert('Bijde vakken moeten ingevult zijn.');</script>";
+        exit;
+    }
+
+    if (!empty($motivation) && empty($_FILES['fileToUpload']['name'])) {
+        echo "<script type='text/javascript'>alert('Bijde vakken moeten ingevult zijn.');</script>";
+        exit;
+    }
+
+    if (empty($motivation) && !empty($_FILES['fileToUpload']['name'])) {
         echo "<script type='text/javascript'>alert('Bijde vakken moeten ingevult zijn.');</script>";
         exit;
     }

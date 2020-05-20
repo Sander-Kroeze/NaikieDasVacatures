@@ -1,6 +1,6 @@
 <?php
 include('acceptPage.php');
-include('mailer.php');
+include('functions/mailer.php');
 
 if (isset($_POST['submitAcceptMessage'])) {
 //  controleerd of er geen tekens tussen zitten die gegevens kunnen verkrijgen.

@@ -135,23 +135,12 @@ INSERT INTO jobFunction (functionName)
 VALUES ('Manager');
 
 -- voorbeeld branches
-INSERT INTO branchName (functionName)
-VALUES ('Amsterdam');
+INSERT INTO jobbranch (branchName)
+VALUES ('Emmen - Weerdingestraat');
 
-INSERT INTO branchName (functionName)
-VALUES ('Emmen');
+INSERT INTO jobbranch (branchName)
+VALUES ('Groningen - Sumatralaan');
 
-INSERT INTO branchName (functionName)
-VALUES ('Zwolle');
-
-INSERT INTO branchName (functionName)
-VALUES ('Groningen');
-
-INSERT INTO branchName (functionName)
-VALUES ('Assen');
-
-INSERT INTO branchName (functionName)
-VALUES ('Hardenberg');
 
 
 SET SQL_MODE=@OLD_SQL_MODE;

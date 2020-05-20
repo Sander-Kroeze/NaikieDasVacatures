@@ -1,8 +1,8 @@
 <?php
 // voegt bestanden toe.
 include_once('loginForm.php');
-include('Register.php');
-include('login.php');
+include('functions/Register.php');
+include('functions/login.php');
 
 
 // controleerd of de 'registersubmit' gepost is.

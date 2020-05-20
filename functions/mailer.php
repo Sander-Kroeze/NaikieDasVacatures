@@ -1,5 +1,5 @@
 <?php
-require_once 'vendor/autoload.php';
+require_once 'pages/vendor/autoload.php';
 
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\PHPMailer;
@@ -10,7 +10,7 @@ class mailer
     public function makeNewMail($dateTime = NULL, $perMessage, $isSet)
     {
 //      voegt meer funtionaliteit toe om mails te kunnen versturen
-        require_once 'vendor/autoload.php';
+        require_once 'pages/vendor/autoload.php';
 
         $mail = new PHPMailer(true);
 //      probeert een mail te versturen
@@ -32,7 +32,7 @@ class mailer
             if ($isSet === 'submitAcceptMessage') {
                 $correctDateFormat = str_replace('T', ' ', $dateTime);
                 $mail->Subject = 'Reactie vacature NaikieDas';
-                $mail->Body = $perMessage . '<br>Kun je om deze tijd lang komen: ' . $correctDateFormat . '?<br><br> Met vriendelijke groet,<br><br> Henk';
+                $mail->Body = $perMessage . '<br><br>Kun je om deze tijd lang komen: ' . $correctDateFormat . '?<br><br> Met vriendelijke groet,<br><br> Henk';
             } else {
                 $mail->Subject = 'Reactie vacature NaikieDas';
                 $mail->Body = 'Bedankt voor je bericht! Je bent niet aangenomen.';
