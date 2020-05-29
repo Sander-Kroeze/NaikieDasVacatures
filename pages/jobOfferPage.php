@@ -47,6 +47,13 @@ if (isset($_SESSION["STATUS"]) && $_SESSION['STATUS'] === '1') {
         <input type="hidden" name="jobOfferID" value="<?php echo $_GET['jobofferID']; ?>">
         <input type="hidden" name="deleteJobOffer" value="true">
     </form>
+
+<!--    Form voor het dupliceren van de vacature-->
+    <form action="" method="POST" enctype="multipart/form-data">
+        <input type="submit" class="jobDuplicateButton" value="Dupliceer" id="submit"/>
+        <input type="hidden" name="dupliceerJobOfferID" value="<?php echo $_GET['jobofferID']; ?>">
+        <input type="hidden" name="dupliceerJobOffer" value="true">
+    </form>
     <?php
 }
 

@@ -1,5 +1,6 @@
 <?php
 include('jobOfferPage.php');
+include('functions/addJobOffer.php');
 include('functions/jobOfferReaction.php');
 include('functions/mailer.php');
 
@@ -104,6 +105,22 @@ if (isset($_POST['deleteJobOffer'])) {
 
     echo "<script type='text/javascript'>alert('De vacature is verwijderd!');</script>";
     echo "<script>location.href='index.php';</script>";
+}
+
+// als deze is geset word de pagina gedupliceerd
+if (isset($_POST['dupliceerJobOffer'])) {
+//  sql statement
+    $offerID = htmlspecialchars($_POST['dupliceerJobOfferID']);
+    $conn = new mysqli('localhost', 'root', '', 'naikiedasvacatures');
+
+    $sql = "SELECT * FROM joboffer WHERE jobofferID = '$offerID'";
+    $joboffers = $conn->query($sql);
+
+    foreach ($joboffers as $joboffer) {
+//      roept een functie aan in een class
+        $newJobOffer = new addJobOffer;
+        $newJobOffer->newJobOffer($joboffer['name'], $joboffer['idJobfunction'], $joboffer['idJobbranch'], $joboffer['description']);
+    }
 }
 
 
