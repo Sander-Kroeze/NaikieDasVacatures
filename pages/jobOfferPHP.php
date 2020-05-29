@@ -85,12 +85,26 @@ if (isset($_POST['changeStatus'])) {
 }
 
 if (isset($_POST['submitAfwijzen'])) {
+
+    $reactionID = htmlspecialchars($_POST['reactionID']);
+    $vacatureID = htmlspecialchars($_POST['offerID']);
+
+//  maakt connectie met de DB
+    $conn = new mysqli('localhost', 'root', '', 'naikiedasvacatures');
+
+//  veranderd de status van de reactie
+    $query = "UPDATE offerreaction SET isRated = '1' WHERE offerReactionID = '$reactionID'";
+    $conn->query($query);
+
     $persMessage = '<p>Bedankt voor je bericht! Je bent niet aangenomen</p>';
     $isSet = 'submitAfwijzen';
     $time = 0;
+
 //  Roept een method aan om een mail te versturen
     $newMail = new mailer;
     $newMail->makeNewMail($time, $persMessage, $isSet);
+
+    echo "<script>location.href='index.php?page=jobOfferPHP&jobofferID=$vacatureID';</script>";
 }
 
 if (isset($_POST['deleteJobOffer'])) {

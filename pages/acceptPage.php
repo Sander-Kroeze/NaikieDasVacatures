@@ -30,6 +30,8 @@ WHERE offerReactionID = ?";
                 <textarea required name="persMessage" form="reactionAccept" rows="9" cols="50"></textarea><br>
                 <input type="datetime-local" id="DateTimeAppointment" name="DateTimeAppointment" required><br>
                 <input type="hidden" value="<?php $userInfo['email'] ?>" name="userEmail">
+                <input type="hidden" name="offerID" value="<?php echo  $userInfo['idJoboffer'] ;?>">
+                <input type="hidden" name="reactionID" value="<?php echo $_GET['reaction']; ?>">
                 <input type="hidden" name="submitAcceptMessage" value="true">
                 <input type="submit" class="loginbutton" value="Uitnodiging Versturen" style="color: white"
                        id="submit"/>

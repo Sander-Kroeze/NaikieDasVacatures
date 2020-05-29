@@ -118,6 +118,7 @@ Where idJoboffer = ?";
             <tr>
                 <th>Download cv</th>
                 <th>Motivatie</th>
+                <th>Beantwoord?</th>
                 <th>Acties</th>
             </tr>
             <?php
@@ -133,12 +134,27 @@ Where idJoboffer = ?";
                     </td>
                     <td><p><?php echo $jobReaction['motivation'] ?></p></td>
                     <td>
+                        <?php
+                        if ($jobReaction['isRated'] === '0') {
+                            echo 'Reactie niet beantwoord';
+                        } elseif ($jobReaction['isRated'] === '1') {
+                            echo 'Reactie afgewezen';
+                        } else {
+                            echo 'Reactie geaccepteerd';
+                        }
+
+                        ?>
+                    </td>
+                    <td>
                         <button class="jobReactionButton"
                                 onclick="window.location.href='index.php?page=acceptPHP&reaction=<?php echo $jobReaction['offerReactionID']; ?>'">
                             Accepteren
                         </button>
                         <form id="afwijzen" name="afwijzen" method="POST" action="" enctype="multipart/form-data">
                             <input class="jobReactionButton" type="submit" value="Afwijzen" id="submit"/>
+                            <input type="hidden" name="reactionID"
+                                   value="<?php echo $jobReaction['offerReactionID']; ?>">
+                            <input type="hidden" name="offerID" value="<?php echo $_GET['jobofferID']; ?>">
                             <input type="hidden" name="submitAfwijzen" value="true">
                         </form>
 

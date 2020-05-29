@@ -91,6 +91,7 @@ CREATE TABLE IF NOT EXISTS `NaikieDasVacatures`.`offerreaction` (
   `idJoboffer` INT(11) NOT NULL,
   `motivation` LONGTEXT NOT NULL,
   `cv` LONGTEXT NOT NULL,
+  `isRated` TINYINT(4) DEFAULT '0',
   PRIMARY KEY (`offerReactionID`),
   CONSTRAINT `jobofferID`
     FOREIGN KEY (`idJoboffer`)
