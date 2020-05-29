@@ -99,9 +99,22 @@ if (isset($_POST['deleteJobOffer'])) {
 //  controleert de input
     $offerID = htmlspecialchars($_POST['jobOfferID']);
 
-//  verwijderd een rij uit de databse
-    $query = "DELETE FROM joboffer WHERE jobofferID = '$offerID';";
-    $conn->query($query);
+    $query = $conn->query("SELECT * FROM offerreaction
+    WHERE idJobOffer = '$offerID'");
+
+//  controleerd als er resultaat is
+    if ($query->num_rows === '0') {
+//      als het niet zo is verwijderd hij alleen de vacature
+        $query2 = "DELETE FROM joboffer WHERE jobofferID = '$offerID';";
+        $conn->query($query2);
+    } else {
+//      als het wel zo is dan verwijderd hij eerst de reacties en dan de vacature
+        $query2 = "DELETE FROM offerreaction WHERE idJobOffer = '$offerID';";
+        $conn->query($query2);
+
+        $query3 = "DELETE FROM joboffer WHERE jobofferID = '$offerID';";
+        $conn->query($query3);
+    }
 
     echo "<script type='text/javascript'>alert('De vacature is verwijderd!');</script>";
     echo "<script>location.href='index.php';</script>";
