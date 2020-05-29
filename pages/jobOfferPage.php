@@ -50,7 +50,7 @@ if (isset($_SESSION["STATUS"]) && $_SESSION['STATUS'] === '1') {
 
 <!--    Form voor het dupliceren van de vacature-->
     <form action="" method="POST" enctype="multipart/form-data">
-        <input type="submit" class="jobDuplicateButton" value="Dupliceer" id="submit"/>
+        <input type="submit" class="jobReactionButton" value="Dupliceer" id="submit"/>
         <input type="hidden" name="dupliceerJobOfferID" value="<?php echo $_GET['jobofferID']; ?>">
         <input type="hidden" name="dupliceerJobOffer" value="true">
     </form>
@@ -74,6 +74,12 @@ foreach ($jobOffers as $jobOffer) {
             echo 'Download het bestand om de beschrijfing te bekijken:<a class="linkJoboffer" href="uploads/' . $jobOffer['description'] . '" download=""> Download</a><br>';
         } else {
             echo 'Beschrijving: ' . $jobOffer['description'] . '<br>';
+        }
+
+        if (isset($_SESSION["STATUS"]) && $_SESSION['STATUS'] === '1') {
+            ?>
+            <a href="index.php?page=updateJobOfferPHP&offerID=<?php echo $_GET['jobofferID'];?>" class="jobReactionButton">Bewerk vacature</a>
+            <?php
         }
         ?>
     </div>
